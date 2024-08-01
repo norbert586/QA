@@ -26,11 +26,19 @@ describe('API Automated Testing', () => {
       });
     });
   });
-  it('API Spec - Sad Path', () => {
+  it('API Spec - Sad Path - Invalid Email', () => {
     createUser('Bad User','Bad Email').then((response) => {
       // POST Response Validation
       expect(response.status).to.be.greaterThan(399);
       expect(response.body[0].message).to.include('is invalid');
+      cy.log(`Response Body: ${JSON.stringify(response.body, null, 2)}`);
+    });
+  });
+  it('API Spec - Sad Path - Duplicate Email ', () => {
+    createUser('Norbert Ratiu','SameEmail@gmail.com').then((response) => {
+      // POST Response Validation
+      expect(response.status).to.be.greaterThan(399);
+      expect(response.body[0].message).to.include('has already been taken');
       cy.log(`Response Body: ${JSON.stringify(response.body, null, 2)}`);
     });
   });
