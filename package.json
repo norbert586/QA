@@ -1,5 +1,7 @@
 {
   "devDependencies": {
+    "@types/jest": "^29.5.12",
+    "@types/mocha": "^10.0.7",
     "cypress": "^13.13.2"
   },
   "name": "qatest",
