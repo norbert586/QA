@@ -68,3 +68,8 @@ Expected Result:
     
 The UI Test focuses on the 3rd point. The test visits the page and does some basic validation as this is not a full happy path. It then adds a dynamic amount of a custom coffee type and verifies the total window is all correct.
 The test only goes through this one test scenario as described. If the test suite were to be more comprehensive, it would have much deeper cart validation and static check validation. These are all examples of future tests though.
+![IMG_7608](https://github.com/user-attachments/assets/cd7d8cdc-be3f-403d-b08c-ef0313f72ed7)
+
+
+https://github.com/user-attachments/assets/8032c13f-a32e-4e7f-b051-96fa3f58e1a4
+
