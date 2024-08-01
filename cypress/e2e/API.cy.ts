@@ -1,9 +1,9 @@
 import { v4 as uuidv4 } from 'uuid';
 
-const baseUrl = 'https://gorest.co.in';
+// TODO - add to secrets managment system
 const accessToken = '91280494bea4056fdf8f2a7bade3d4218d6ac14fb53430f21b6ee42a87173711'; 
 
-describe('API & UI Automated Testing', () => {
+describe('API Automated Testing', () => {
   it('API Spec - Happy Path', () => {
     createUser('Norbert Ratiu').then((response) => {
       // POST Response Validation
@@ -26,7 +26,7 @@ describe('API & UI Automated Testing', () => {
       });
     });
   });
-  it.only('API Spec - Sad Path', () => {
+  it('API Spec - Sad Path', () => {
     createUser('Bad User','Bad Email').then((response) => {
       // POST Response Validation
       expect(response.status).to.be.greaterThan(399);
@@ -38,17 +38,17 @@ describe('API & UI Automated Testing', () => {
 
 
 function createUser(name: string, email?: string) {
-  // Use provided email or generate a unique one
+  // Default: Random Email
+  // Optional: Custom Email
   const emailAddress = email || (() => {
     const [firstName, lastName] = name.toLowerCase().split(' ');
     const uniqueString = uuidv4();
     return `${firstName}_${lastName}_${uniqueString}@example.test`;
   })();
 
-  // Return the cy.request to allow chaining
   return cy.request({
     method: 'POST',
-    url: `${baseUrl}/public/v2/users`,
+    url: `/public/v2/users`,
     headers: {
       Authorization: `Bearer ${accessToken}`,
       'Content-Type': 'application/json',
@@ -66,7 +66,7 @@ function createUser(name: string, email?: string) {
 function getUser(userId: string) {
   return cy.request({
     method: 'GET',
-    url: `${baseUrl}/public/v2/users/${userId}`,
+    url: `/public/v2/users/${userId}`,
     headers: {
       Authorization: `Bearer ${accessToken}`,
       'Content-Type': 'application/json',
